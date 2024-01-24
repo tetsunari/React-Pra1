@@ -27,6 +27,8 @@
         };
         const increment = () => {
           setCount(count + 1);
+          setCount((prevCount) => { return prevCount + 1; });
+          setCount((prevCount) => { return prevCount + 1; });
         };
 
         return (
