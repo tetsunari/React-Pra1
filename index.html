@@ -18,14 +18,24 @@
     'use strict';
 
     {
+      const Menu = (props) => {
+        return (
+          <li>
+            <button>-</button>
+            <button>+</button>
+            {props.name} ({props.price}円 ☓ 0個)
+          </li>
+        );
+      };
+
       const App = () => {
         return (
           <>
             <h1>メニュー</h1>
             <ul className="menus">
-              <li>牛丼</li>
-              <li>牛丼</li>
-              <li>牛丼</li>
+              <Menu name="牛丼" price="400" />
+              <Menu name="カレー" price="500" />
+              <Menu name="サラダ" price="300" />
             </ul>
             <p>合計: 0円</p>
           </>

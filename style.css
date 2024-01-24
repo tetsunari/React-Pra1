@@ -7,7 +7,6 @@ body {
 #container {
     width: 400px;
     margin: 0 auto;
-    background: pink;
 }
 
 h1 {
@@ -22,11 +21,16 @@ h1 {
     list-style: none;
 }
 
-.menus > li {
+.menus>li {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 8px;
     border-radius: 8px;
     margin-top: 16px;
+}
+
+.menus button {
+    margin-right: 8px;
+    width: 24px;
 }
 
 p {
