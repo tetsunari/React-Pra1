@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,28 +10,33 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div id="container"></div>
-
 
   <script type="text/babel">
     'use strict';
 
     {
-      const container = document.getElementById('container');
+      const App = () => {
+        return (
+          <>
+            <h1>メニュー</h1>
+            <ul className="menus">
+              <li>牛丼</li>
+              <li>牛丼</li>
+              <li>牛丼</li>
+            </ul>
+            <p>合計: 0円</p>
+          </>
+        );
+      };
+
+      const container = document.querySelector('#container');
       const root = ReactDOM.createRoot(container);
-      root.render(
-        <>
-          <h1>メニュー</h1>
-          <ul className="menus">
-            <li>牛丼</li>
-            <li>牛丼</li>
-            <li>牛丼</li>
-          </ul>
-          <p>合計：1000円</p>
-        </>
-      );
+      root.render(<App />);
     }
   </script>
 </body>
+
 </html>
