@@ -20,6 +20,8 @@
     {
       const Menu = (props) => {
         const decrement = () => {
+          // App component function
+          props.onDecrement();
         };
         const increment = () => {
         };
@@ -34,15 +36,19 @@
       };
 
       const App = () => {
-        const [counts, setCounts] = React.useState([1, 1, 1]);
+        const [counts, setCounts] = React.useState([0, 0, 0]);
         const menus = [
           { id: 0, name: '牛丼', price: 400 },
           { id: 1, name: 'カレー', price: 500 },
           { id: 2, name: 'サラダ', price: 300 },
         ];
-        const total = menus.reduce((sum, menu) => {
-          return sum + menu.price * counts[menu.id];
-        }, 0);
+        const total =
+          (menus[0].price * counts[0]) +
+          (menus[1].price * counts[1]) +
+          (menus[2].price * counts[2]);
+        const decrementMenu = () => {
+          console.log('minus button clicked!');
+        };
 
         const menuItems = menus.map((menu) => {
           return (
@@ -51,6 +57,7 @@
               count={counts[menu.id]}
               name={menu.name}
               price={menu.price}
+              onDecrement={decrementMenu}
             />
           );
         });
