@@ -36,12 +36,12 @@
       const App = () => {
         const [counts, setCounts] = React.useState([0, 0, 0]);
         const menus = [
-          {id: 0, name: '牛丼', price: 400},
-          {id: 1, name: 'カレー', price: 500},
-          {id: 2, name: 'サラダ', price: 300},
+          {name: '牛丼', price: 400},
+          {name: 'カレー', price: 500},
+          {name: 'サラダ', price: 300},
         ];
-        const total = menus.reduce((sum, menu) => {
-          return sum + menu.price * counts[menu.id];
+        const total = menus.reduce((sum, menu, key) => {
+          return sum + menu.price * counts[key];
         }, 0);
         const decrementMenu = (menuId) => {
           if (counts[menuId] > 0) {
@@ -57,12 +57,12 @@
           setCounts(newCounts);
         };
 
-        const menuItems = menus.map((menu) => {
+        const menuItems = menus.map((menu, key) => {
           return (
             <Menu
-              key={menu.id}
-              menuId={menu.id}
-              count={counts[menu.id]}
+              key={key}
+              menuId={key}
+              count={counts[key]}
               name={menu.name}
               price={menu.price}
               onDecrement={decrementMenu}
