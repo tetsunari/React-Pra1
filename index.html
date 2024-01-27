@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <div id="container"></div>
 
@@ -20,10 +18,10 @@
     {
       const Menu = (props) => {
         const decrement = () => {
-          // App component function
-          props.onDecrement();
+          props.onDecrement(props.menuId);
         };
         const increment = () => {
+          props.onIncrement(props.menuId);
         };
 
         return (
@@ -38,26 +36,37 @@
       const App = () => {
         const [counts, setCounts] = React.useState([0, 0, 0]);
         const menus = [
-          { id: 0, name: '牛丼', price: 400 },
-          { id: 1, name: 'カレー', price: 500 },
-          { id: 2, name: 'サラダ', price: 300 },
+          {id: 0, name: '牛丼', price: 400},
+          {id: 1, name: 'カレー', price: 500},
+          {id: 2, name: 'サラダ', price: 300},
         ];
-        const total =
-          (menus[0].price * counts[0]) +
-          (menus[1].price * counts[1]) +
-          (menus[2].price * counts[2]);
-        const decrementMenu = () => {
-          console.log('minus button clicked!');
+        const total = menus.reduce((sum, menu) => {
+          return sum + menu.price * counts[menu.id];
+        }, 0);
+        const decrementMenu = (menuId) => {
+          if (counts[menuId] > 0) {
+            // [0, 0, 0] → [-1, 0, 0]
+            const newCounts = [...counts];
+            newCounts[menuId]--;
+            setCounts(newCounts);
+          }
+        };
+        const incrementMenu = (menuId) => {
+          const newCounts = [...counts];
+          newCounts[menuId]++;
+          setCounts(newCounts);
         };
 
         const menuItems = menus.map((menu) => {
           return (
             <Menu
               key={menu.id}
+              menuId={menu.id}
               count={counts[menu.id]}
               name={menu.name}
               price={menu.price}
               onDecrement={decrementMenu}
+              onIncrement={incrementMenu}
             />
           );
         });
@@ -79,5 +88,4 @@
     }
   </script>
 </body>
-
 </html>
